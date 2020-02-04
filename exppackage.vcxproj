@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations" Condition="'$(VisualStudioVersion)'=='10.0'">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)build.props\platform.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)build.props\config.props" />
+    <Import Project="$(SolutionDir)build.props\vssdk.props" />
+  </ImportGroup>
+  <PropertyGroup>
+    <TargetName>exppackage</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <ModuleDefinitionFile>exppackage.def</ModuleDefinitionFile>
+      <AdditionalDependencies>vsguids.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalManifestDependencies>type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'</AdditionalManifestDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(IntDir)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories);./compat</AdditionalIncludeDirectories>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PreprocessorDefinitions>_ATL_FREE_THREADED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="visualstudio\vs-extension\command-ids.h" />
+    <CustomBuild Include="visualstudio\vs-extension\commands.vsct">
+      <FileType>Document</FileType>
+      <Command>"$(VSSDKRoot)VisualStudioIntegration\Tools\Bin\vsct.exe" "%(FullPath)" "$(IntDir)%(Filename).cto" -I"$(VSSDKRoot)VisualStudioIntegration\Common\Inc"</Command>
+      <Outputs>$(IntDir)%(Filename).cto</Outputs>
+    </CustomBuild>
+    <None Include="visualstudio\vs-extension\extension.vs10.vsixmanifest" />
+    <Fix Include="visualstudio\vs-extension\extension.vs10.vsixmanifest" />
+    <None Include="visualstudio\vs-extension\extension.vsixmanifest" />
+    <Fix Include="visualstudio\vs-extension\extension.vsixmanifest" />
+    <None Include="visualstudio\vs-extension\exppackage.pkgdef" />
+    <Fix Include="visualstudio\vs-extension\exppackage.pkgdef" />
+    <Content Include="logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>true</Visible>
+    </Content>
+    <ClInclude Include="resources\resource.h" />
+    <ResourceCompile Include="resources\exppackage_vspackage.rc" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="visualstudio\vs-extension\vs-package.cpp" />
+  </ItemGroup>
+  <Target Name="CopyFixed" AfterTargets="Midl">
+    <Exec Command="call make-version VERSION &quot;$(SolutionDir)version.h&quot;&#xD;&#xA;		 replace &quot;%(Fix.Identity)&quot; &gt; &quot;$(OutDir)%(Fix.Filename)%(Fix.Extension)&quot;" />
+  </Target>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

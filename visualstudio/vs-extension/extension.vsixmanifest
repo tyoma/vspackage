@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+	<Metadata>
+		<Identity Id="A9F6B552-7424-4E3E-980D-19A2681896AD" Version="!version!" Language="en-US" Publisher="Artem Gevorkyan" />
+		<DisplayName>Experimental Package</DisplayName>
+		<Icon>logo.ico</Icon>
+	</Metadata>
+	<Installation InstalledByMsi="false" AllUsers="false" SystemComponent="false" Scope="ProductExtension">
+		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0, 17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Premium" Version="[11.0, 17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Ultimate" Version="[11.0, 17.0)" />
+		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[11.0, 17.0)" />
+	</Installation>
+	<Assets>
+		<Asset Type="Microsoft.VisualStudio.VsPackage" Path="exppackage.pkgdef" />
+	</Assets>
+	<Prerequisites>
+		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[11.0,17.0)" DisplayName="Visual Studio core editor" />
+	</Prerequisites>
+</PackageManifest>

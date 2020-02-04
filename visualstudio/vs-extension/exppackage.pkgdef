@@ -1,0 +1,22 @@
+[$RootKey$\InstalledProducts\MicroProfiler]
+@="MicroProfiler"
+"Package"="B264B274-06E2-4B13-8BBD-9EEC51478CB0"
+"UseInterface"=dword:0
+"PID"="!version!"
+
+[$RootKey$\Packages\{B264B274-06E2-4B13-8BBD-9EEC51478CB0}]
+"InprocServer32"="$PackageFolder$\exppackage.dll"
+"AllowsBackgroundLoad"=dword:00000001
+
+[$RootKey$\AutoLoadPackages\{ADFC4E64-0397-11D1-9F4E-00A0C911004F}]
+"{B264B274-06E2-4B13-8BBD-9EEC51478CB0}"=dword:2
+
+[$RootKey$\AutoLoadPackages\{F1536EF8-92EC-443C-9ED7-FDADF150DA82}]
+"{B264B274-06E2-4B13-8BBD-9EEC51478CB0}"=dword:2
+
+[$RootKey$\Menus]
+"{B264B274-06E2-4B13-8BBD-9EEC51478CB0}"=", 1000, 1"
+
+[$RootKey$\Packages\{B264B274-06E2-4B13-8BBD-9EEC51478CB0}\SatelliteDll]
+"DllName"="exppackage.ui.dll"
+"Path"="$PackageFolder$"

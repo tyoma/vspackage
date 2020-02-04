@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vsix Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+	<Identifier Id="{A9F6B552-7424-4E3E-980D-19A2681896AD}">
+		<Name>Experimental Package</Name>
+		<Author>gevorkyan.org</Author>
+		<Version>!version!</Version>
+		<Locale>1033</Locale>
+		<SupportedProducts>
+			<VisualStudio Version="10.0">
+				<Edition>Pro</Edition>
+			</VisualStudio>
+		</SupportedProducts>
+		<SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+	</Identifier>
+	<References>
+		<Reference Id="Microsoft.VisualStudio.MPF" MinVersion="10.0">
+			<Name>Visual Studio MPF</Name>
+		</Reference>
+	</References>
+
+	<Content>
+		<VsPackage>exppackage.pkgdef</VsPackage>
+	</Content>
+</Vsix>
